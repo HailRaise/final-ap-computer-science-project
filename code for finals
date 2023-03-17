@@ -1,0 +1,26 @@
+import random
+width = 400
+height = 0
+def onMousePress(x, y):
+    gamemodes = Label("Choose gamemode: ", width/2 , height+150, size = 20, visible = True)
+    first_label = Label("First one is guess number from 1 to 100", width - 250, height + 300, visible = True)
+    if first_label.hits(x, y):
+        gamemodes.visible = False
+        first_label.visible = False
+        first_mode()
+def first_mode():
+    x = random.randint(0,100)
+    Label("guess the number! (1-100)", width/2, height + 100, size = 20)
+    Label("press space to write number!", width/2, height + 200, size = 20)
+    def find_num(user, random):
+        if random > user:
+            print ("higher!")
+        elif random < user: 
+            print ("lower!")
+        else: 
+            print("You got it!")
+    def onKeyPress(key):
+        if key == "space":
+            user_answ = int(app.getTextInput('Enter a number!!'))
+            find_num(user_answ, x)
+            print(x)
