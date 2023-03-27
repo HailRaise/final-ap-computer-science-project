@@ -1,3 +1,4 @@
+#1
 import random
 width = 400
 height = 0
@@ -24,3 +25,44 @@ def first_mode():
             user_answ = int(app.getTextInput('Enter a number!!'))
             find_num(user_answ, x)
             print(x)
+
+#2
+import random
+min_range = 1
+app.max_range = 100
+Label ("customize the game " , 200 ,200, size = 20)
+Label ("by choosing levels(easy,medium and hard)!" , 200 , 250, size = 20)
+guesses =[]
+app.num_of_guesses = 5
+app.flag = True
+user_lvl = app.getTextInput("choose level: ")
+def levels():
+    if user_lvl == "easy":
+        app.max_range = 20
+        print("guess number from ", min_range, " to ", app.max_range, " in ", app.num_of_guesses, " guesses")
+    elif user_lvl == "medium":
+        app.max_range = 50
+    elif user_lvl == "hard":
+        app.max_range = 100
+    else:
+        print("please write level")
+        return user_lvl
+def onKeyPress(key):
+    levels()
+    rand_num = random.randint(min_range,app.max_range)
+    while app.num_of_guesses > 0:
+        if key == "space":
+            guess =  int(app.getTextInput("guess number: "))
+            if guess == rand_num:
+                print("You found a number!" , "it was " , rand_num)
+                break
+            if guess in guesses:
+                print("you already typed that number")
+            guesses.append(guess)
+            if guess > rand_num:
+                print("lower")
+            else:
+                print("higher")
+            print(rand_num)
+        app.num_of_guesses -=1
+        print("number of guesses left: ", app.num_of_guesses)
